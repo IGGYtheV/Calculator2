@@ -21,11 +21,11 @@ public class Calculator {
                 case '-' -> result = a - b;
                 case '*' -> result = a * b;
                 case '/' -> result = a / b;
-                default -> throw new IllegalArgumentException("неизвестный оператор!");
+                default -> throw new IllegalArgumentException("РЅРµРёР·РІРµСЃС‚РЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ!");
             }
             System.out.println(result);
         } else {
-            throw new Exception("допустимое значение операндов: от 1 до 10");
+            throw new Exception("РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїРµСЂР°РЅРґРѕРІ: РѕС‚ 1 РґРѕ 10");
         }
     }
     public static int romanCalc() throws Exception {
@@ -40,16 +40,16 @@ public class Calculator {
                 case '-' -> a - b;
                 case '*' -> a * b;
                 case '/' -> a / b;
-                default -> throw new IllegalArgumentException("неизвестный оператор!");
+                default -> throw new IllegalArgumentException("РЅРµРёР·РІРµСЃС‚РЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ!");
             };
             return result;
         } else {
-            throw new Exception("допустимое значение операндов: от I до X");
+            throw new Exception("РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїРµСЂР°РЅРґРѕРІ: РѕС‚ I РґРѕ X");
         }
     }
     public static String arabToRoman() throws Exception {
         int input = romanCalc();
-       if (input < 1) { throw new Exception("в римской системе нет ноля и отрицательных чисел");
+       if (input < 1) { throw new Exception("РІ СЂРёРјСЃРєРѕР№ СЃРёСЃС‚РµРјРµ РЅРµС‚ РЅРѕР»СЏ Рё РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹С… С‡РёСЃРµР»");
                }
         return "I".repeat(input)
                 .replace("IIIII", "V")
@@ -66,16 +66,16 @@ public class Calculator {
         String[] parts = task1.split(" ");
         sc1.close();
         if(parts.length < 3) {
-            throw new Exception("строка не является математической операцией");
+            throw new Exception("СЃС‚СЂРѕРєР° РЅРµ СЏРІР»СЏРµС‚СЃСЏ РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕР№ РѕРїРµСЂР°С†РёРµР№");
         } if(parts.length > 3) {
-            throw new Exception("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            throw new Exception("С„РѕСЂРјР°С‚ РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕР№ РѕРїРµСЂР°С†РёРё РЅРµ СѓРґРѕРІР»РµС‚РІРѕСЂСЏРµС‚ Р·Р°РґР°РЅРёСЋ - РґРІР° РѕРїРµСЂР°РЅРґР° Рё РѕРґРёРЅ РѕРїРµСЂР°С‚РѕСЂ (+, -, /, *)");
         }
         part1 = parts[0];
         part2 = parts[1];
         part3 = parts[2];
         if((romanOneToTenList.contains(part1) && part3.matches(regex)) ||
                 (romanOneToTenList.contains(part3) && part1.matches(regex))){
-            throw new Exception("используются одновременно разные системы счисления");
+            throw new Exception("РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ СЂР°Р·РЅС‹Рµ СЃРёСЃС‚РµРјС‹ РёСЃС‡РёСЃР»РµРЅРёСЏ");
         }
         if (part1.matches(regex) && part3.matches(regex) ){
             Calculator.arabCalc();
