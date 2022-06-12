@@ -2,26 +2,26 @@ package src;
 import java.util.*;
 public class Calculator {
     static String regex = "^[0-9]+$";
-    static String part1;
-    static String part2;
-    static String part3;
+    static String operandOne;
+    static String operator;
+    static String operandTwo;
 
     static String[] romanOneToTen = {null, "I", "II", "III", "IV", "V",
             "VI", "VII", "VIII", "IX", "X"};
     static List<String> romanOneToTenList = Arrays.asList(romanOneToTen);
 
     public static void arabCalc() throws Exception {
-        char op = part2.charAt(0);
-        int a = Integer.parseInt(part1);
-        int b = Integer.parseInt(part3);
-        if (a <= 10 && a > 0 && b <= 10 && b > 0) {
+        char op = operator.charAt(0);
+        int a = Integer.parseInt(operandOne);
+        int b = Integer.parseInt(operandTwo);
+        if (a < 11 && a > 0 && b < 11 && b > 0) {
             int result;
             switch (op) {
                 case '+' -> result = a + b;
                 case '-' -> result = a - b;
                 case '*' -> result = a * b;
                 case '/' -> result = a / b;
-                default -> throw new IllegalArgumentException("неизвестный оператор!");
+                default -> throw new Exception("неизвестный оператор!");
             }
             System.out.println(result);
         } else {
@@ -29,9 +29,9 @@ public class Calculator {
         }
     }
     public static int romanCalc() throws Exception {
-        char op = part2.charAt(0);
-        int a = romanOneToTenList.indexOf(part1);
-        int b = romanOneToTenList.indexOf(part3);
+        char op = operator.charAt(0);
+        int a = romanOneToTenList.indexOf(operandOne);
+        int b = romanOneToTenList.indexOf(operandTwo);
         int result;
 
         if (a < 11 && a > 0 && b < 11 && b > 0) {
@@ -40,7 +40,7 @@ public class Calculator {
                 case '-' -> a - b;
                 case '*' -> a * b;
                 case '/' -> a / b;
-                default -> throw new IllegalArgumentException("неизвестный оператор!");
+                default -> throw new Exception("неизвестный оператор!");
             };
             return result;
         } else {
@@ -62,23 +62,23 @@ public class Calculator {
         System.out.println(result);
     }
     public static void main( String[] args ) throws Exception  {
-        Scanner sc1 = new Scanner(System.in);
-        String task1 = sc1.nextLine();
-        sc1.close();
-        String[] parts = task1.split(" ");
+        Scanner scanner = new Scanner(System.in);
+        String task = scanner.nextLine();
+        scanner.close();
+        String[] parts = task.split(" ");
         if(parts.length < 3) {
             throw new Exception("строка не является математической операцией");
         } if(parts.length > 3) {
             throw new Exception("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         }
-        part1 = parts[0];
-        part2 = parts[1];
-        part3 = parts[2];
-        if((romanOneToTenList.contains(part1) && part3.matches(regex)) ||
-                (romanOneToTenList.contains(part3) && part1.matches(regex))){
+        operandOne = parts[0];
+        operator = parts[1];
+        operandTwo = parts[2];
+        if((romanOneToTenList.contains(operandOne) && operandTwo.matches(regex)) ||
+                (romanOneToTenList.contains(operandTwo) && operandOne.matches(regex))){
             throw new Exception("используются одновременно разные системы исчисления");
         }
-        if (part1.matches(regex) && part3.matches(regex) ){
+        if (operandOne.matches(regex) && operandTwo.matches(regex) ){
             Calculator.arabCalc();
         } else {
             Calculator.arabToRoman();
