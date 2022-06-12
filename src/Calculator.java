@@ -47,11 +47,11 @@ public class Calculator {
             throw new Exception("допустимое значение операндов: от I до X");
         }
     }
-    public static String arabToRoman() throws Exception {
+    public static void arabToRoman() throws Exception {
         int input = romanCalc();
        if (input < 1) { throw new Exception("в римской системе нет ноля и отрицательных чисел");
                }
-        return "I".repeat(input)
+       String result = "I".repeat(input)
                 .replace("IIIII", "V")
                 .replace("IIII", "IV")
                 .replace("VV", "X")
@@ -59,12 +59,13 @@ public class Calculator {
                 .replace("XXXXX", "L")
                 .replace("XXXX", "XL")
                 .replace("LL", "C");
+        System.out.println(result);
     }
     public static void main( String[] args ) throws Exception  {
         Scanner sc1 = new Scanner(System.in);
         String task1 = sc1.nextLine();
-        String[] parts = task1.split(" ");
         sc1.close();
+        String[] parts = task1.split(" ");
         if(parts.length < 3) {
             throw new Exception("строка не является математической операцией");
         } if(parts.length > 3) {
@@ -80,8 +81,7 @@ public class Calculator {
         if (part1.matches(regex) && part3.matches(regex) ){
             Calculator.arabCalc();
         } else {
-            Calculator.romanCalc();
-            System.out.println(arabToRoman());
+            Calculator.arabToRoman();
         }
     }
 }
